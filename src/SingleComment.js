@@ -1,26 +1,26 @@
-import React from "react";
-import profile1 from "./image/1.png";
+import React from 'react';
 
-const SingleComment = () => {
-  return (
-    <div>
-      <div className="comment">
-        <a href="/" className="avatar">
-          <img src={profile1} alt="profile" />
-        </a>
+const SingleComment = (props) => {
+    console.table(props);
+    return (
+        <div>
+            <div className="comment">
+                <a href="/" className="avatar">
+                    <img src={props.picture} alt="profile" />
+                </a>
 
-        <div className="content">
-          <a href="/" className="author">
-            Vikrant
-          </a>
-          <div className="metadata">
-            <span className="date">Today at 5:00pm</span>
-          </div>
-          <div className="text">It is nice!!!</div>
+                <div className="content">
+                    <a href="/" className="author">
+                        {props.name}
+                    </a>
+                    <div className="metadata">
+                        <span className="date">{props.date}</span>
+                    </div>
+                    <div className="text">{props.text}</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default SingleComment;
