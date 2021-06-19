@@ -1,14 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import HemisphereDisplay from './HemisphereDisplay';
+import HemisphereDisplay from './HemisphereDisplay';
 
 class App extends React.Component {
-    render() {
+    state = { latitude: null, errorMessage: '' };
+
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
-            (position) => console.log(position),
-            (error) => console.log(error)
+            (position) => {
+                this.setState({ latitude: position.coords.latitude });
+            },
+            (error) => {
+                this.setState({ errorMessage: error.message });
+            }
         );
-        return <div>You are in northern hemisphere!</div>;
+        console.log('componentDidMount');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
+    render() {
+        if (this.state.errorMessage && !this.state.latitude) {
+            return <div>{this.state.errorMessage}</div>;
+        }
+
+        if (this.state.latitude && !this.state.errorMessage) {
+            return (
+                <div>
+                    <HemisphereDisplay latitude={this.state.latitude} />
+                </div>
+            );
+        } else {
+            return <div>Loading...</div>;
+        }
     }
 }
 
