@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
+import { connect } from 'react-redux';
 
 const Contact = () => {
     return (
@@ -30,4 +31,10 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+const mapStateToProps = (state) => {
+    return {
+        cards: state.cards,
+    };
+};
+
+export default connect()(Contact);
