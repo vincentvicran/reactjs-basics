@@ -3,6 +3,7 @@ import React, { createContext, useContext } from 'react';
 const moods = {
     happy: 'happy',
     sad: 'sad',
+    angry: 'angry',
 };
 
 const MoodContext = createContext(moods);
