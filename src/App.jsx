@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moods from './components/Moods';
 import TodoList from './components/TodoList';
 
 export class App extends Component {
@@ -6,6 +7,7 @@ export class App extends Component {
         return (
             <div>
                 <TodoList />
+                <Moods />
             </div>
         );
     }

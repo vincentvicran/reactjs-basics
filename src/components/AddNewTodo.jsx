@@ -1,17 +1,18 @@
+//!CHILD COMPONENT
 import React, { useState } from 'react';
 
 const AddNewTodo = ({ addTodo }) => {
-    const [todos, setTodos] = useState('');
+    const [todo, setTodo] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTodo(todos);
-        setTodos('');
+        addTodo(todo);
+        setTodo('');
     };
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="todo">To Do</label>
-            <input type="text" value={todos} id="todo" onChange={(e) => setTodos(e.target.value)} />
+            <input type="text" value={todo} id="todo" onChange={(e) => setTodo(e.target.value)} />
             <input type="submit" className="ui button" value="Submit" />
         </form>
     );

@@ -1,38 +1,30 @@
-import React, { useState, useEffect } from 'react';
+//!PARENT COMPONENT
+import React, { useState } from 'react';
 import AddNewTodo from './AddNewTodo';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([
-        { text: 'Pay the bills.', id: 1 },
-        { text: 'Do your homework.', id: 2 },
-        { text: 'Call your gal.', id: 3 },
+        { todo: 'Pay the bills.', id: 1 },
+        { todo: 'Do your homework.', id: 2 },
+        { todo: 'Call your gal.', id: 3 },
     ]);
 
-    const [count, setCount] = useState(0);
+    let [count, setCount] = useState(todos.length);
 
-    const addTodo = (text) => {
-        setTodos([...todos, { text, id: Math.random() }]);
+    const addTodo = (todo) => {
+        setTodos([...todos, { todo, id: Number(count) }]);
+        setCount(++count);
     };
-
-    useEffect(() => {
-        console.log('Use Effect for todos', todos);
-    }, [todos]);
-
-    useEffect(() => {
-        console.log('Use Effect for count', count);
-    }, [count]);
 
     return (
         <div>
-            <ul>
-                {todos.map((todo) => {
-                    return <li key={todo.id}>{todo.text}</li>;
+            <ol>
+                {todos.map((todoArray) => {
+                    return <li key={todoArray.id}>{todoArray.todo}</li>;
                 })}
-            </ul>
+            </ol>
             <AddNewTodo addTodo={addTodo} />
-            <button className="ui button" onClick={() => setCount(count + 1)}>
-                Score: {count}
-            </button>
+            <button className="ui button">Score: {count}</button>
         </div>
     );
 };
